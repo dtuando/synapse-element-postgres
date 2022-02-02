@@ -250,10 +250,14 @@ This is NOT recomended.
 
 Caddy will be used for the reverse proxy. This will handle incomming HTTPS connections and forward them to the correct docker containers. It a simple setup process and Caddy will automatically fetch and renew Let's Encrypt certificates for us!
 
-Follow this setup guide:
+remove current Caddyfile  
+```sudo nano rm /etc/caddy/Caddyfile```
+
+create a new Caddyfile and copy the following code.  
+```sudo nano /etc/caddy/Caddyfile```
 
 
-matrix.example.com {
+```matrix.example.com {
   reverse_proxy /_matrix/* 10.10.10.4:8008
   reverse_proxy /_synapse/client/* 10.10.10.4:8008
   
@@ -284,16 +288,16 @@ element.example.com {
     -server
   }
 }
+``` 
 
-Matrix Reverse Proxy Docs
-
-    Enable the config: caddy reload
+Enable the config:  
+    ```caddy reload```
 
 Login
 
-    Head to your element domain and login!
+Head to your element domain and login!
 
 Don't forget to update every now and then
 
-Pull the new docker images and then restart the containers:
-sudo docker-compose pull && sudo docker-compose up -d
+Pull the new docker images and then restart the containers:  
+```sudo docker-compose pull && sudo docker-compose up -d```
